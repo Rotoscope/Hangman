@@ -5,6 +5,9 @@
  */
 package hangman;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -50,10 +53,56 @@ public class Play extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel() {
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.setColor(Color.BLACK);
+                g.fillRect(150, 30, 150, 10);  //Gallows
+                g.fillRect(290, 30, 10, 50);
+                g.fillRect(150, 30, 10, 200);
+                g.fillRect(50, 230, 400, 10);
+
+                if(score == 90){    //head
+                    g.drawOval(285, 80, 30, 30);
+                }
+                if(score == 80){    //head+body
+                    g.drawOval(285, 80, 30, 30);
+                    g.drawLine(355, 190, 355, 240);
+                }
+                if(score == 70){    //head+body+left arm
+                    g.drawOval(285, 80, 30, 30);
+                    g.drawLine(355, 190, 355, 240);
+                    g.drawLine(350, 240, 355, 200);
+                }
+                if(score == 60){    //head+body+left arm+right arm
+                    g.drawOval(285, 80, 30, 30);
+                    g.drawLine(355, 190, 355, 240);
+                    g.drawLine(350, 240, 355, 200);
+                    g.drawLine(360, 240, 355, 200);
+                }
+                if(score == 50){    //head+body+left arm+right arm+right leg
+                    g.drawOval(285, 80, 30, 30);
+                    g.drawLine(355, 190, 355, 240);
+                    g.drawLine(350, 240, 355, 200);
+                    g.drawLine(360, 240, 355, 200);
+                    g.drawLine(360, 260, 355, 240);
+                }
+                if(score == 40){    ////head+body+left arm+right arm+right leg+left leg
+                    g.drawOval(300, 80, 30, 30);
+                    g.drawLine(355, 190, 355, 240);
+                    g.drawLine(350, 240, 355, 200);
+                    g.drawLine(360, 240, 355, 200);
+                    g.drawLine(360, 260, 355, 240);
+                    g.drawLine(350, 260, 355, 240);
+                }
+
+                repaint();
+            }
+        };
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(500, 0), new java.awt.Dimension(500, 0), new java.awt.Dimension(500, 32767));
         jPanel3 = new javax.swing.JPanel();
         jToggleButton1 = new javax.swing.JToggleButton();
         jToggleButton2 = new javax.swing.JToggleButton();
@@ -96,7 +145,7 @@ public class Play extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addContainerGap(522, Short.MAX_VALUE))
+                .addContainerGap(572, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addContainerGap(390, Short.MAX_VALUE)
@@ -110,6 +159,8 @@ public class Play extends javax.swing.JPanel {
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
         );
 
+        jPanel2.setPreferredSize(new java.awt.Dimension(600, 256));
+
         jButton1.setText("SKIP");
 
         jLabel4.setText("SCORE:");
@@ -120,13 +171,19 @@ public class Play extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jButton1))
-                .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(140, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jButton1)
+                            .addComponent(jLabel5))
+                        .addGap(45, 45, 45))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,8 +194,12 @@ public class Play extends javax.swing.JPanel {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
+
+        jPanel3.setPreferredSize(new java.awt.Dimension(600, 66));
 
         jToggleButton1.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         jToggleButton1.setText("A");
@@ -409,9 +470,6 @@ public class Play extends javax.swing.JPanel {
                         .addComponent(jToggleButton26)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jToggleButton1, jToggleButton10, jToggleButton11, jToggleButton12, jToggleButton13, jToggleButton14, jToggleButton15, jToggleButton16, jToggleButton17, jToggleButton18, jToggleButton19, jToggleButton2, jToggleButton20, jToggleButton21, jToggleButton22, jToggleButton23, jToggleButton24, jToggleButton25, jToggleButton26, jToggleButton3, jToggleButton4, jToggleButton5, jToggleButton6, jToggleButton7, jToggleButton8, jToggleButton9});
-
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -506,6 +564,7 @@ public class Play extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
