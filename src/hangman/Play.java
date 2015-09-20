@@ -67,33 +67,33 @@ public class Play extends javax.swing.JPanel {
                 }
                 if(score == 80){    //head+body
                     g.drawOval(285, 80, 30, 30);
-                    g.drawLine(355, 190, 355, 240);
+                    g.drawLine(300, 110, 300, 180);
                 }
                 if(score == 70){    //head+body+left arm
                     g.drawOval(285, 80, 30, 30);
-                    g.drawLine(355, 190, 355, 240);
-                    g.drawLine(350, 240, 355, 200);
+                    g.drawLine(300, 110, 300, 180);
+                    g.drawLine(300, 115, 285, 150);
                 }
                 if(score == 60){    //head+body+left arm+right arm
                     g.drawOval(285, 80, 30, 30);
-                    g.drawLine(355, 190, 355, 240);
-                    g.drawLine(350, 240, 355, 200);
-                    g.drawLine(360, 240, 355, 200);
+                    g.drawLine(300, 110, 300, 180);
+                    g.drawLine(300, 115, 285, 150);
+                    g.drawLine(300, 115, 315, 150);
                 }
-                if(score == 50){    //head+body+left arm+right arm+right leg
+                if(score == 50){    //head+body+left arm+right arm+life leg
                     g.drawOval(285, 80, 30, 30);
-                    g.drawLine(355, 190, 355, 240);
-                    g.drawLine(350, 240, 355, 200);
-                    g.drawLine(360, 240, 355, 200);
-                    g.drawLine(360, 260, 355, 240);
+                    g.drawLine(300, 110, 300, 180);
+                    g.drawLine(300, 115, 285, 150);
+                    g.drawLine(300, 115, 315, 150);
+                    g.drawLine(300, 180, 325, 200);
                 }
                 if(score == 40){    ////head+body+left arm+right arm+right leg+left leg
-                    g.drawOval(300, 80, 30, 30);
-                    g.drawLine(355, 190, 355, 240);
-                    g.drawLine(350, 240, 355, 200);
-                    g.drawLine(360, 240, 355, 200);
-                    g.drawLine(360, 260, 355, 240);
-                    g.drawLine(350, 260, 355, 240);
+                    g.drawOval(285, 80, 30, 30);
+                    g.drawLine(300, 110, 300, 180);
+                    g.drawLine(300, 115, 285, 150);
+                    g.drawLine(300, 115, 315, 150);
+                    g.drawLine(300, 180, 325, 200);
+                    g.drawLine(300, 180, 275, 200);
                 }
 
                 repaint();
@@ -551,7 +551,7 @@ public class Play extends javax.swing.JPanel {
 	    }
 	} else {
 	    //does not contain letter
-	    if (score != 50) {
+	    if (score != 40) {
 		score -= 10;
 		//function to draw hanging dude
 	    } else {
@@ -560,6 +560,8 @@ public class Play extends javax.swing.JPanel {
 	    }
 
 	}
+	
+	jLabel5.setText("" + score);
     }//GEN-LAST:event_jToggleButtonActionPerformed
 
 
